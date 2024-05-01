@@ -54,4 +54,11 @@ router.get('/reel/:id',async(req, res) => {
     res.render('instagram', {data:URL.data[0]})
 })
 
+router.get('/tiktok/:author/:id',async(req, res) => {
+    const { tikdown } = require("nayan-media-downloader")
+    console.log(`https://tiktok.com/${req.params.author}/video/${req.params.id}`)
+    let URL = await tikdown(`https://www.tiktok.com/${req.params.author}/video/${req.params.id}`)
+    res.render('tiktok', {data:URL.data, id:req.params.id})
+})
+
 module.exports = router

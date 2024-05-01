@@ -1,0 +1,146 @@
+<html lang="en">
+<head>
+    <%- include('./head.ejs') %>
+
+    <script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary: {"50":"#fdf4ff","100":"#fae8ff","200":"#f5d0fe","300":"#f0abfc","400":"#e879f9","500":"#d946ef","600":"#c026d3","700":"#a21caf","800":"#86198f","900":"#701a75","950":"#4a044e"}
+      }
+    },
+    fontFamily: {
+      'body': [
+    'Open Sans', 
+    'ui-sans-serif', 
+    'system-ui', 
+    '-apple-system', 
+    'system-ui', 
+    'Segoe UI', 
+    'Roboto', 
+    'Helvetica Neue', 
+    'Arial', 
+    'Noto Sans', 
+    'sans-serif', 
+    'Apple Color Emoji', 
+    'Segoe UI Emoji', 
+    'Segoe UI Symbol', 
+    'Noto Color Emoji'
+  ],
+      'sans': [
+    'Open Sans', 
+    'ui-sans-serif', 
+    'system-ui', 
+    '-apple-system', 
+    'system-ui', 
+    'Segoe UI', 
+    'Roboto', 
+    'Helvetica Neue', 
+    'Arial', 
+    'Noto Sans', 
+    'sans-serif', 
+    'Apple Color Emoji', 
+    'Segoe UI Emoji', 
+    'Segoe UI Symbol', 
+    'Noto Color Emoji'
+  ]
+    }
+  }
+}
+    </script>
+
+    <title>StealThis.lol / TikTok by @<%= data.author.unique_id %></title>
+</head>
+<body>
+  <%- include('./navbar.ejs') %>
+
+    <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
+        <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+          <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+            <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+                <img class="w-full" src="<%= data.author.avatar %>" style="border-radius:30px" alt="" />
+            </div>
+    
+            <div class="mt-6 sm:mt-8 lg:mt-0">
+              <h1
+                class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
+              >
+              <a
+              class="font-extrabold text-gray-900 dark:text-white"
+              href="https://www.tiktok.com/@<%= data.author.unique_id %>"
+              target="_blank"
+            >
+            @<%= data.author.unique_id %>
+          </a>
+              </h1>
+              <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+                <h1
+                class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
+              >
+                <%= data.play %> views • <%= data.view %> likes
+              </h1>
+              </div>
+    
+              <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
+                <a
+                  href="https://www.tiktok.com/@<%= data.author.unique_id %>/video/<%= id %>"
+                  title=""
+                  class="text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
+                  role="button"
+                  target="_blank"
+                >
+                  Watch on TikTok
+                </a>
+                <a
+                  href="https://ko-fi.com/jimiwtf"
+                  title=""
+                  class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  role="button"
+                >
+                  <svg
+                    class="w-5 h-5 -ms-2 me-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+                    />
+                  </svg>
+                  Support the developer
+                </a>
+              </div>
+              <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
+              <a
+                  href="<%= data.video %>"
+                  title=""
+                  class="mt-2 flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  role="button"
+                  target="_blank"
+                >
+                Download TikTok (no watermark)
+                </a>
+                <a
+                  href="<%= data.audio %>"
+                  title=""
+                  class="mt-2 flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  role="button"
+                  target="_blank"
+                >
+                Download audio only
+                </a>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>
