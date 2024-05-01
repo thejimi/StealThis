@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "express": "^4.19.2"
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "nayan-media-downloader": "^2.1.8",
+    "ytdl-core": "^4.11.5"
   }
 }
