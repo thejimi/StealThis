@@ -5,11 +5,7 @@ const port = 3000
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.redirect("/info")
-})
-
-app.get('/info', (req, res) => {
-    res.send('info')
+  res.render('pages/landing')
 })
 
 app.get('/watch', (req, res) => {
