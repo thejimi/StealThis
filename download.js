@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/youtube/:id', async (req, res) => {
-    if(!ytdl.validateID(req.params.id)) return res.render('error', {text:`Invalid YouTube Video`})
+    if(!ytdl.validateID(req.params.id)) return res.render('pages/error', {title:`Invalid YouTube Video`, description:`Please make sure you've entered a real youtube link or if the video is still available`})
 
     let info = await ytdl.getInfo(req.params.id);
 

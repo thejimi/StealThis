@@ -8,6 +8,18 @@ app.get('/', (req, res) => {
   res.render('pages/landing')
 })
 
+app.get('/youtube', (req, res) => {
+  res.render('downloaders/youtube')
+})
+
+app.get('/tiktok', (req, res) => {
+  res.render('downloaders/tiktok')
+})
+
+app.get('/reel', (req, res) => {
+  res.render('downloaders/reel')
+})
+
 app.get('/watch', (req, res) => {
     if(req.query.v){
         return res.redirect(`/download/youtube/${req.query.v}`)
@@ -18,6 +30,12 @@ app.get('/:username/video/:id', (req, res) => {
     if(req.params.username.startsWith("@")){
       return res.redirect(`/download/tiktok/${req.params.username}/${req.params.id}`)
     }
+})
+
+app.get('/:username/photo/:id', (req, res) => {
+  if(req.params.username.startsWith("@")){
+    return res.redirect(`/download/tiktok/${req.params.username}/${req.params.id}`)
+  }
 })
 
 app.get('/reel/:id', (req, res) => {
@@ -32,8 +50,16 @@ app.get('/favicon', (req, res) => {
   res.sendFile(__dirname + "/favicon.png")
 })
 
+app.get('/img/:filename/:fileextension', (req, res) => {
+  res.sendFile(__dirname +`/img/${req.params.filename}.${req.params.fileextension}`)
+})
+
 const download = require('./download')
 app.use('/download', download)
+
+app.get('*', function(req, res){
+  res.status(404).render('pages/error', {title:'Page not found...', description:'We looked everywhere but couldn\'t find what you\'re looking for'})
+});
 
 app.listen(port, () => {
   console.log(`${port}`)
