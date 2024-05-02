@@ -11,8 +11,13 @@ const timeLog = (req, res, next) => {
 router.use(timeLog)
 
 router.get('/', (req, res) => {
-    res.redirect('/info')
+    res.redirect('/?h=download')
 })
+
+router.get('/:some', (req, res) => {
+    res.redirect(`/?h=download&p=${req.params.some}`)
+})
+
 
 router.get('/youtube/:id', async (req, res) => {
     if(!ytdl.validateID(req.params.id)) return res.render('pages/error', {title:`Invalid YouTube Video`, description:`Please make sure you've entered a real youtube link or if the video is still available`})

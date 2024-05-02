@@ -4,7 +4,17 @@ const port = 3000
 
 app.set('view engine', 'ejs')
 
+var useragent = require('express-useragent');
+ 
+app.use(useragent.express());
+
 app.get('/', (req, res) => {
+  console.log(req.useragent)
+
+  if(!req.query.platform){
+    return res.redirect(`http://192.168.0.41:3000/?platform=${req.useragent.platform.replace(/ /g, '_').toLowerCase()}&browser=${req.useragent.browser.toLowerCase()}`)
+  }
+
   res.render('pages/landing')
 })
 
