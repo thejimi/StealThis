@@ -62,7 +62,7 @@ router.get('/tiktok/:author/:id',async(req, res) => {
 
     var filename = await download(URL.data.video, 'mp4')
 
-    res.render('tiktok', {data:URL.data, id:req.params.id, downloadLink:`http://192.168.0.41:3000/file/${filename}?format=mp4`})
+    res.render('tiktok', {data:URL.data, id:req.params.id, downloadLink:`http://192.168.0.41:3000/file/${filename}?format=mp4`, watchLink:`http://192.168.0.41:3000/watch/${filename}?format=mp4`})
 })
 
 function makeid(length) {

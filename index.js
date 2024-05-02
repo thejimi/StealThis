@@ -28,6 +28,14 @@ app.get('/file/:filename', (req, res) => {
   res.download(__dirname + `/cdn/stealthis_app_${req.params.filename}.${req.query.format}`)
 })
 
+app.get('/watch/:filename', (req, res) => {
+  if(!req.query.format){
+    return res.render('error', {title:`No format provided`, description:`The ?format parameter is missing`})
+  }
+
+  res.sendFile(__dirname + `/cdn/stealthis_app_${req.params.filename}.${req.query.format}`)
+})
+
 app.get('/watch', (req, res) => {
     if(req.query.v){
         return res.redirect(`/download/youtube/${req.query.v}`)
