@@ -63,7 +63,7 @@
     <section class="bg-white dark:bg-stone-900">
         <div class="pt-8 px-4 mx-auto max-w-screen-xl text-center lg:pt-16 lg:px-12">
             <a href="./guide" class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-stone-700 bg-stone-100 rounded-full dark:bg-stone-800 dark:text-white hover:bg-stone-200 dark:hover:bg-stone-700" role="alert">
-                <span class="text-xs bg-primary-600 rounded-full text-white px-4 py-1.5 mr-3">👋</span> <span class="text-sm font-medium">Join our Discord server</span> 
+                <span class="text-xs bg-primary-600 rounded-full text-white px-4 py-1.5 mr-3">🌐</span> <span class="text-sm font-medium">Join our Discord server</span> 
                 <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
             </a>
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-stone-900 md:text-5xl lg:text-6xl dark:text-white">Discord</h1>
@@ -81,8 +81,8 @@
       <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
           <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-              <img onerror="this.src = this.src.replace('gif', 'png')" class="w-auto h-96" src="" id="img1" style="border-radius:30px" alt="" />
-              <img onerror="this.src = this.src.replace('gif', 'png')" class="w-full mt-4 h-auto" src="" id="img2" style="border-radius:30px" alt="" />
+              <img onerror="this.src = this.src.replace('gif', 'png');" class="w-auto h-96" id="img1" style="border-radius:30px" alt="" />
+              <img onerror="this.src = this.src.replace('gif', 'png');" class="w-full mt-4 h-auto" id="img2" style="border-radius:30px" alt="" />
             </div>
 
           <div class="mt-6 sm:mt-8 lg:mt-0">
@@ -171,6 +171,10 @@
           document.getElementById('avatar_png').href = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png?size=1024`
           document.getElementById('avatar_gif').href = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.gif?size=1024`
           
+          if(data.bot === true){
+            document.getElementById('globalName').innerHTML = `${data.global_name||data.username} <span class="text-primary-500">BOT</span>`
+          }
+
           if(data.banner){
             document.getElementById('banner_png').href = `https://cdn.discordapp.com/avatars/${data.id}/${data.banner}.png?size=1024`
             document.getElementById('banner_gif').href = `https://cdn.discordapp.com/avatars/${data.id}/${data.banner}.gif?size=1024`
