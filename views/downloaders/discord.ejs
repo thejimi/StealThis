@@ -77,12 +77,109 @@
         </div>
     </section>
 
+    <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased hidden" id="results">
+      <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+          <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+              <img onerror="this.src = this.src.replace('gif', 'png')" class="w-auto h-96" src="" id="img1" style="border-radius:30px" alt="" />
+              <img onerror="this.src = this.src.replace('gif', 'png')" class="w-full mt-4 h-auto" src="" id="img2" style="border-radius:30px" alt="" />
+            </div>
+
+          <div class="mt-6 sm:mt-8 lg:mt-0">
+            <h1
+              class="text-2xl font-semibold text-gray-900 sm:text-3xl dark:text-white"
+              id="globalName"
+            >
+            ...
+            </h1>
+            <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+              <h1
+              class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
+              id="username"
+            >
+              ...
+            </h1>
+            </div>
+            <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
+            <a
+                href=""
+                title=""
+                class="mt-2 flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                role="button"
+                id="avatar_png"
+                target="_blank"
+              >
+              Download avatar as&nbsp;<strong>png</strong>
+              </a>
+              <a
+                href=""
+                title=""
+                class="mt-2 flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                role="button"
+                target="_blank"
+                id="avatar_gif"
+              >
+              Download avatar as&nbsp;<strong>gif</strong>
+              </a>
+              <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
+            <a
+                href=""
+                title=""
+                class="mt-2 flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                role="button"
+                target="_blank"
+                id="banner_png"
+              >
+              Download banner as&nbsp;<strong>png</strong>
+              </a>
+              <a
+                href=""
+                title=""
+                class="mt-2 flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                role="button"
+                target="_blank"
+                id="banner_gif"
+              >
+              Download banner as&nbsp;<strong>gif</strong>
+              </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <%- include('../options.ejs') %>
 </body>
 
 <script>
     function lookup(){
-        var id = document.getElementById('')
+        var id = document.getElementById('id').value
+
+        if(!id) {
+          return alert("Please enter an ID")
+        }
+
+        fetch(`http://localhost:3000/api/discord_user/${id}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          document.getElementById('results').classList.remove('hidden')
+          document.getElementById('img1').src = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.gif?size=1024`
+          document.getElementById('globalName').innerHTML = `${data.global_name||data.username}`
+          document.getElementById('username').innerHTML = `@${data.username}`
+          document.getElementById('img2').src = `https://cdn.discordapp.com/banners/${data.id}/${data.banner}.gif?size=1024`
+
+          document.getElementById('avatar_png').href = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png?size=1024`
+          document.getElementById('avatar_gif').href = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.gif?size=1024`
+          
+          if(data.banner){
+            document.getElementById('banner_png').href = `https://cdn.discordapp.com/avatars/${data.id}/${data.banner}.png?size=1024`
+            document.getElementById('banner_gif').href = `https://cdn.discordapp.com/avatars/${data.id}/${data.banner}.gif?size=1024`
+          } else {
+            document.getElementById('banner_png').classList.add('hidden')
+            document.getElementById('banner_gif').classList.add('hidden')
+            document.getElementById('img2').classList.add('hidden')
+          }
+        })
     }
 
     const isValidUrl = urlString=> {
