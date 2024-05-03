@@ -54,7 +54,7 @@ theme: {
 
 <meta property="og:title" content="Instagram Reels Downloader" />
 <meta property="og:description" content="Download reels without watermark - for free, without ads." />
-<meta property="og:image" content="http://192.168.0.41:3000/favicon" />
+<meta property="og:image" content="http://localhost:3000/favicon" />
 
 </head>
 <body>
@@ -93,7 +93,7 @@ theme: {
         }
 
         var link = new URL(url)
-        window.location.href = (`http://192.168.0.41:3000/download${link.pathname}`)
+        window.location.href = (`http://localhost:3000/download${link.pathname}`)
     }
 
     const isValidUrl = urlString=> {

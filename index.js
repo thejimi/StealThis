@@ -11,10 +11,6 @@ app.use(useragent.express());
 app.get('/', (req, res) => {
   console.log(req.useragent)
 
-  if(!req.query.platform){
-    return res.redirect(`http://192.168.0.41:3000/?platform=${req.useragent.platform.replace(/ /g, '_').toLowerCase()}&browser=${req.useragent.browser.toLowerCase()}`)
-  }
-
   res.render('pages/landing')
 })
 
@@ -28,6 +24,10 @@ app.get('/tiktok', (req, res) => {
 
 app.get('/reel', (req, res) => {
   res.render('downloaders/reel')
+})
+
+app.get('/discord', (req, res) => {
+  res.render('downloaders/discord')
 })
 
 app.get('/file/:filename', (req, res) => {
@@ -82,6 +82,9 @@ app.get('/img/:filename/:fileextension', (req, res) => {
 
 const download = require('./download')
 app.use('/download', download)
+
+const api = require('./api')
+app.use('/api', api)
 
 app.get('*', function(req, res){
   res.status(404).render('pages/error', {title:'Page not found...', description:'We looked everywhere but couldn\'t find what you\'re looking for'})

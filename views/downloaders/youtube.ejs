@@ -54,7 +54,7 @@
 
 <meta property="og:title" content="YouTube Downloader" />
 <meta property="og:description" content="Download videos, audio & thumbnails from YouTube - for free, without ads." />
-<meta property="og:image" content="http://192.168.0.41:3000/favicon" />
+<meta property="og:image" content="http://localhost:3000/favicon" />
 
 </head>
 <body>
@@ -102,11 +102,11 @@
 
             var v = urlParams.get("v");
 
-            window.location.href = (`http://192.168.0.41:3000/download/youtube/${v}`)
+            window.location.href = (`http://localhost:3000/download/youtube/${v}`)
         } else {
             var link = new URL(url)
             link = link.pathname.replace('/', '')
-            window.location.href = (`http://192.168.0.41:3000/download/youtube/${link}`)
+            window.location.href = (`http://localhost:3000/download/youtube/${link}`)
         }
     }
 
